@@ -26,6 +26,5 @@
     "config": "^3.3.9",
     "nodemon": "^2.0.20",
     "telegraf": "^4.11.2"
-  },
-  "devDependencies": {}
+  }
 }
