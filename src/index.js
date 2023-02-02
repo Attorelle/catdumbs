@@ -29,8 +29,12 @@ bot.start(async (ctx) => {
     await ctx.reply(isAdmin(ctx.message.from.id) ? onStart.toAdmin : onStart.toUser);
 });
 
-bot.on('message', async (ctx) => {
+bot.on('photo', async (ctx) => {
 	forwardToAdmin(ctx);
+});
+
+bot.on('message', async (ctx) => {
+	await ctx.reply("Принимаются исключительно изображения.");
 });
 
 bot.launch();
