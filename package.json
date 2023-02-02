@@ -1,0 +1,31 @@
+{
+  "name": "catdumbs",
+  "version": "1.0.0",
+  "description": "A Telegram Bot to receive suggestions",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/attorelle/catdumbs.git"
+  },
+  "keywords": [
+    "bot",
+    "telegram",
+    "telegraf",
+    "catdumbs"
+  ],
+  "author": "Attorelle",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/attorelle/catdumbs/issues"
+  },
+  "homepage": "https://github.com/attorelle/catdumbs#readme",
+  "dependencies": {
+    "config": "^3.3.9",
+    "nodemon": "^2.0.20",
+    "telegraf": "^4.11.2"
+  },
+  "devDependencies": {}
+}
