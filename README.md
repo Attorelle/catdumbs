@@ -1,6 +1,6 @@
 ## @catdumbs Telegram Bot
 
-[![Channel](https://img.shields.io/badge/Telegram%20Channel-gray.svg?colorA=ffffff&colorB=EFDAD7&style=for-the-badge&logo=starship%20style=for-the-badge)](https://t.me/catdumbs)
+[![Channel](https://img.shields.io/badge/Telegram-Channel-gray.svg?colorA=ffffff&colorB=EFDAD7&style=for-the-badge&logo=starship%20style=for-the-badge)](https://t.me/catdumbs)
 
 *[Licensed under the GNU General Public License v2.0](https://github.com/Attorelle/catdumbs/blob/default/LICENSE)*
 
