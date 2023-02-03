@@ -1,1 +1,1 @@
-config nodemon telegraf
+config nodemon telegraf @grammyjs/i18n

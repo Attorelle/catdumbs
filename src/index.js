@@ -1,5 +1,6 @@
 const config = require('config');
 const { Telegraf } = require('telegraf');
+const i18n = require('./middlewares/i18n');
 
 const token = config.get('config.token');
 const admin = config.get('config.admin');
@@ -9,32 +10,35 @@ let isAdmin = (userId) => {
 	return userId == admin;
 };
 
-let forwardToAdmin = async (ctx) => {
+let forwardToAdmin = async ctx => {
 	if (isAdmin(ctx.message.from.id)) {
 		await ctx.deleteMessage();
 	} else {
 		await ctx.forwardMessage(admin, ctx.from.id, ctx.message.id);
-		await ctx.reply("Сообщение отправлено!", {
+		await ctx.reply(ctx.t("on.photo"), {
 			reply_to_message_id: ctx.message.message_id
 		});
 	}
 };
 
-let onStart = {
-	"toUser": "Привет! Это — бот-предложка канала «шерстяные презервативы»! 🐈‍⬛\nНа данный момент принимаются исключительно изображения.",
-	"toAdmin": "Привет! Я готов принимать новые посты!"
-};
+bot.use(i18n.middleware());
 
-bot.start(async (ctx) => {
-    await ctx.reply(isAdmin(ctx.message.from.id) ? onStart.toAdmin : onStart.toUser);
+bot.start(async ctx => {
+	if (!isAdmin(ctx.message.from.id)) {
+		await ctx.reply(ctx.t('start.usr'), {
+			parse_mode: "HTML"
+		});
+	} else {
+		await ctx.reply(ctx.t('start.adm'));
+	}
 });
 
-bot.on('photo', async (ctx) => {
+bot.on('photo', async ctx => {
 	forwardToAdmin(ctx);
 });
 
-bot.on('message', async (ctx) => {
-	await ctx.reply("Принимаются исключительно изображения.");
+bot.on('message', async ctx => {
+	await ctx.reply(ctx.t('on.any'));
 });
 
 bot.launch();

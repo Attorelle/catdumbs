@@ -25,6 +25,7 @@
   "dependencies": {
     "config": "^3.3.9",
     "nodemon": "^2.0.20",
-    "telegraf": "^4.11.2"
+    "telegraf": "^4.11.2",
+    "@grammyjs/i18n": "^1.0.1"
   }
 }
