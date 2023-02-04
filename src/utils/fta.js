@@ -6,7 +6,7 @@ const admin = config.get("config.admin");
 
 const forwardToAdmin = async ctx => {
 	if (isAdmin(ctx.message.from.id)) {
-		await ctx.deleteMessage();
+		await ctx.reply(ctx.t("on.reject"));
 	} else {
 		await ctx.forwardMessage(admin, ctx.from.id, ctx.message.id);
 		await ctx.reply(ctx.t("on.photo"), {
