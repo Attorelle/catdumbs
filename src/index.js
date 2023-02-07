@@ -2,6 +2,10 @@ const config = require('config');
 const { Telegraf } = require('telegraf');
 const i18n = require('./middlewares/i18n');
 
+// Handlers
+const banHandler = require("./handlers/ban");
+
+// Utils
 const forwardToAdmin = require("./utils/fta");
 const isAdmin = require("./utils/isAdmin");
 
@@ -18,6 +22,9 @@ bot.start(async ctx => {
 	} else {
 		await ctx.reply(ctx.t('start.adm'));
 	}
+});
+bot.command('ban', async ctx => {
+	banHandler(ctx);
 });
 
 bot.on('photo', async ctx => {
