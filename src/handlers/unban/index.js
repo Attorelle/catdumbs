@@ -12,19 +12,20 @@ let array = {
 };
 const banlist = path.resolve("./src/banlist.json");
 
-const banHandler = async ctx => {
+const unbanHandler = async ctx => {
 	array = JSON.parse(fs.readFileSync(banlist, 'utf8'));
 	const userId = ctx.message.reply_to_message.forward_from.id;
-	if (array.users.includes(userId) === false) {
-		array.users.push(userId);
+	const requiredId = array.users.indexOf(userId);
+	if (requiredId > -1) {
+		array.users.splice(requiredId, 1);
 		let data = JSON.stringify(array);
 		fs.writeFileSync(banlist, data);
 
-		await ctx.telegram.sendMessage(userId, ctx.t("ban.notification"));
-		await ctx.reply(ctx.t("ban.done"));
+		await ctx.telegram.sendMessage(userId, ctx.t("unban.notification"));
+		await ctx.reply(ctx.t("unban.done"));
 	} else {
-		await ctx.reply(ctx.t("ban.already"));
+		await ctx.reply(ctx.t("unban.err"));
 	}
 };
 
-module.exports = banHandler;
+module.exports = unbanHandler;

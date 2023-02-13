@@ -4,6 +4,7 @@ const i18n = require('./middlewares/i18n');
 
 // Handlers
 const banHandler = require("./handlers/ban");
+const unbanHandler = require("./handlers/unban");
 
 // Utils
 const forwardToAdmin = require("./utils/fta");
@@ -15,7 +16,7 @@ const bot = new Telegraf(token);
 bot.use(i18n.middleware());
 
 bot.start(async ctx => {
-	if (!isAdmin(ctx.message.from.id)) {
+	if (!isAdmin(ctx.from.id)) {
 		await ctx.reply(ctx.t('start.usr'), {
 			parse_mode: "HTML"
 		});
@@ -23,8 +24,17 @@ bot.start(async ctx => {
 		await ctx.reply(ctx.t('start.adm'));
 	}
 });
+
 bot.command('ban', async ctx => {
-	banHandler(ctx);
+	if (isAdmin(ctx.from.id)) {
+		banHandler(ctx);
+	}
+});
+
+bot.command('unban', async ctx => {
+	if (isAdmin(ctx.from.id)) {
+		unbanHandler(ctx);
+	}
 });
 
 bot.on('photo', async ctx => {

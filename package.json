@@ -29,6 +29,8 @@
     "telegraf": "^4.11.2"
   },
   "nodemonConfig": {
-    "ignore": ["src/banlist.json"]
+    "ignore": [
+      "src/banlist.json"
+    ]
   }
 }
